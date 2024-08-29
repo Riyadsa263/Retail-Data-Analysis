@@ -1,0 +1,10 @@
+s=count(meesho2,`Customer.State`) 
+png(file="RLollipop_chart.jpg") 
+ggplot(s,aes(x=`Customer.State`,y=n))+geom_segment(aes(x=`Customer.S
+tate`,xend=`Customer.State`,y=0,yend=n))+geom_point(color=rainbow(length(s$n)),size=4)+ 
+theme(axis.text.x=element_text(angle=90))
+s=count(meesho2,`Customer.State`) 
+ggplot(s,aes(x=`Customer.State`,y=n))+geom_segment(aes(x=`Customer.S
+tate`,xend=`Customer.State`,y=0,yend=n))+ 
+geom_point(color=rainbow(length(s$n)),size=4)+ 
+theme(axis.text.x=element_text(angle=90)) 
