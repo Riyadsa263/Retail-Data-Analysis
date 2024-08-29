@@ -1,0 +1,29 @@
+del=count(meesho2,`Reason.for.Credit.Entry`) 
+df=data.frame(var1=c(del$`Reason.for.Credit.Entry`),Freq=c(del$n)) 
+df$fraction=df$Freq/sum(df$Freq) df$ymax=cumsum(df$fraction) 
+df$ymin=c(0,head(df$ymax,n=-1)) 
+ggplot(df,aes(ymax=ymax,ymin=ymin,xmax=4,xmin=3,fill=var1)) 
++geom_rect()+ coord_polar("y") + xlim(c(2,4)) 
+png(file="RDonut_plot.jpg") 
+dev.off() 
+del=count(meesho2,`Reason.for.Credit.Entry`) 
+
+#The above code gives the table that contains the frequency of each value in the 
+column "Reason.for.Credit.Entry" of the data frame "meesho2". The result is stored in 
+the variable ‘del’. 
+df=data.frame(var1=c(del$`Reason.for.Credit.Entry`),Freq=c(del$n)) 
+Retail Marketing Analysis 
+8 
+df$fraction=df$Freq/sum(df$Freq) 
+ Calculates percentages of column.
+df$ymax=cumsum(df$fraction) 
+ Calculates cumulative percentages (top of each rectangle) column
+df$ymin=c(0,head(df$ymax,n=-1)) 
+ Calculates the bottom of each rectangle
+ggplot(df,aes(ymax=ymax,ymin=ymin,xmax=4,xmin=3,fill=var1)) 
++geom_rect()+ coord_polar("y") + xlim(c(2,4))
+ geom_rect() to plot each group as a rectangle and then converting it to a ring using 
+coord_polar(). 
+ coord_polar(theta="y") is used for converting to polar coordinates (stacked 
+rectangle to pie-chart)
+ xlim(c(2,4)) is used to convert Pie-chart to a ring 
